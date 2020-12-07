@@ -30,11 +30,11 @@ Rather than requiring the GUID Id values to identify the Source or Destination Q
 
 It is literally too long to capture a screenshot of the whole thing:
 
-![AddToQueue](media/AddtoQueue.png)
+![AddToQueue](media/AddToQueue.png)
 
 ### After
 
-![sample_AddToQueue](media/sample_AddtoQueue.png)
+![sample_AddToQueue](media/sample_AddToQueue.png)
 
 
 ## sample_AddUserToRecordTeam
