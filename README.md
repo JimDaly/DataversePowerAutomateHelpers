@@ -4,7 +4,7 @@ Contains Custom Actions that provide workarounds for Dataverse Actions that have
 
 There are some out-of-the-box actions which are not usable as bound or unbound actions when called from the Power Automate Common Data Service (Current Environment) connector.
 
-This repo contains definitions of custom actions defined using Custom API to provide a different interface that is easier for the connector to render.
+This repo contains definitions of custom actions defined using the new [Custom API feature](https://docs.microsoft.com/powerapps/developer/common-data-service/custom-api) to provide a different interface that is easier for the connector to render.
 
 These actions are included in solutions (managed and unmanaged) in this Repo.
 
