@@ -1,17 +1,21 @@
 # Dataverse PowerAutomate Helpers
 
-Contains Custom Actions that provide workarounds for Dataverse Actions that have issues in Power Automate Common Data Service (Current Environment)
+Contains Custom Actions that provide workarounds for Dataverse Actions that have issues in Power Automate Common Data Service (Current Environment) connector.
 
 There are some out-of-the-box actions which are not usable as bound or unbound actions when called from the Power Automate Common Data Service (Current Environment) connector.
 
 This repo contains definitions of custom actions defined using the new [Custom API feature](https://docs.microsoft.com/powerapps/developer/common-data-service/custom-api) to provide a different interface that is easier for the connector to render.
 
-These actions are included in solutions (managed and unmanaged) in this Repo.
+These actions are included in solutions (managed and unmanaged) in this Repo. If you want to try these, download the managed solution and install in your environment. They will appear in the Common Data Service (Current Environment) connector.
 
 Below is a list of the available APIs:
 
 - [sample_AddToQueue](#sample_addtoqueue)
 - [sample_AddUserToRecordTeam](#sample_AddUserToRecordTeam)
+
+If there are other Actions you want to use but are not able to, please open an issue for this GitHub repo.
+
+You are also welcome to contribute by adding your own alternative custom actions.
 
 ## sample_AddToQueue
 
