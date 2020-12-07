@@ -10,6 +10,9 @@ These actions are included in solutions (managed and unmanaged) in this Repo.
 
 Below is a list of the available APIs:
 
+- [sample_AddToQueue](#sample_addtoqueue)
+- [sample_AddUserToRecordTeam](#sample_AddUserToRecordTeam)
+
 ## sample_AddToQueue
 
 This custom action simplifies the OOTB AddToQueue action by exposing only 4 Fields. Rather than being bound to the Queue entity, it is an unbound action.
@@ -27,11 +30,11 @@ Rather than requiring the GUID Id values to identify the Source or Destination Q
 
 It is literally too long to capture a screenshot of the whole thing:
 
-![AddToQueue](media\AddtoQueue.png)
+![AddToQueue](media/AddtoQueue.png)
 
 ### After
 
-![sample_AddToQueue](media\sample_AddtoQueue.png)
+![sample_AddToQueue](media/sample_AddtoQueue.png)
 
 
 ## sample_AddUserToRecordTeam
@@ -55,8 +58,8 @@ This function will also confirm that the RecordEntityLogicalName matches the typ
 
 There are a lot of unneeded fields about the team template, when all that is needed is the GUID value.
 
-![AddUserToRecordTeam](media\AddUserToRecordTeam.png)
+![AddUserToRecordTeam](media/AddUserToRecordTeam.png)
 
 ### After
 
-![sample_AddUserToRecordTeam](media\sample_AddUserToRecordTeam.png)
+![sample_AddUserToRecordTeam](media/sample_AddUserToRecordTeam.png)
