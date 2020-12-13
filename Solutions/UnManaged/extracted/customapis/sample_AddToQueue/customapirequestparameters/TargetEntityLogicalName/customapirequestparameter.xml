@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="TargetEntityLogicalName">
+  <description default="The logical name of the entity that represents the item to add to the queue">
+    <label description="The logical name of the entity that represents the item to add to the queue" languagecode="1033" />
+  </description>
+  <displayname default="Target Entity Logical Name">
+    <label description="Target Entity Logical Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>AddToQueue.TargetEntityLogicalName</name>
+  <type>10</type>
+</customapirequestparameter>

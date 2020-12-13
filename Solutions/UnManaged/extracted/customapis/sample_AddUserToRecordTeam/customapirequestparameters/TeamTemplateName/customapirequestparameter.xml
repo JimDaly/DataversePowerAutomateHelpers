@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="TeamTemplateName">
+  <description default="The name of team template which is used to create the access team.">
+    <label description="The name of team template which is used to create the access team." languagecode="1033" />
+  </description>
+  <displayname default="Team Template Name">
+    <label description="Team Template Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>AddUsertoRecordTeam.TeamTemplateName</name>
+  <type>10</type>
+</customapirequestparameter>

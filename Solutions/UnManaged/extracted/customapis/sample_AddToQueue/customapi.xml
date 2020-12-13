@@ -1,0 +1,17 @@
+<customapi uniquename="sample_AddToQueue">
+  <allowedcustomprocessingsteptype>0</allowedcustomprocessingsteptype>
+  <bindingtype>0</bindingtype>
+  <description default="Use this action to move an item to a queue.">
+    <label description="Use this action to move an item to a queue." languagecode="1033" />
+  </description>
+  <displayname default="Add To Queue">
+    <label description="Add To Queue" languagecode="1033" />
+  </displayname>
+  <executeprivilegename>prvAppendToQueue</executeprivilegename>
+  <iscustomizable>1</iscustomizable>
+  <isfunction>0</isfunction>
+  <name>AddToQueue</name>
+  <plugintypeid>
+    <plugintypeid>bacef2ba-8aca-481d-a546-092f2b034104</plugintypeid>
+  </plugintypeid>
+</customapi>

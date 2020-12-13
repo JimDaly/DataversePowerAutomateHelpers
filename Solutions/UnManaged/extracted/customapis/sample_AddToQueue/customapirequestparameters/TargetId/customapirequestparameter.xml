@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="TargetId">
+  <description default="The Id of the item to add to the queue">
+    <label description="The Id of the item to add to the queue" languagecode="1033" />
+  </description>
+  <displayname default="Target Id">
+    <label description="Target Id" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>AddToQueue.TargetId</name>
+  <type>12</type>
+</customapirequestparameter>

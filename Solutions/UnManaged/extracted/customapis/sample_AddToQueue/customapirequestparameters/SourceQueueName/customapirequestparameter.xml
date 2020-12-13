@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="SourceQueueName">
+  <description default="The name of the queue to take the item from.">
+    <label description="The name of the queue to take the item from." languagecode="1033" />
+  </description>
+  <displayname default="Source Queue Name">
+    <label description="Source Queue Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>1</isoptional>
+  <name>AddToQueue.SourceQueueName</name>
+  <type>10</type>
+</customapirequestparameter>

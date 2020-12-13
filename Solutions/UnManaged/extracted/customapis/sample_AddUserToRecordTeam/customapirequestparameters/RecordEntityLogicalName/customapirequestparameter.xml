@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="RecordEntityLogicalName">
+  <description default="The logical name of the entity that matches the Team Template entity type">
+    <label description="The logical name of the entity that matches the Team Template entity type" languagecode="1033" />
+  </description>
+  <displayname default="Record Entity Logical Name">
+    <label description="Record Entity Logical Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>AddUserToRecordTeam.RecordEntityLogicalName</name>
+  <type>10</type>
+</customapirequestparameter>
