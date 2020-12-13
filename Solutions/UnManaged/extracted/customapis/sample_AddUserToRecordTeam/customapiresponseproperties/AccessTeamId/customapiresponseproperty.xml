@@ -1,0 +1,11 @@
+<customapiresponseproperty uniquename="AccessTeamId">
+  <description default="The ID of the auto created access team.">
+    <label description="The ID of the auto created access team." languagecode="1033" />
+  </description>
+  <displayname default="Access Team Id">
+    <label description="Access Team Id" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <name>AddUserToRecordTeam.AccessTeamId</name>
+  <type>12</type>
+</customapiresponseproperty>

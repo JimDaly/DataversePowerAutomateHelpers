@@ -1,0 +1,17 @@
+<customapi uniquename="sample_AddUserToRecordTeam">
+  <allowedcustomprocessingsteptype>0</allowedcustomprocessingsteptype>
+  <bindingtype>1</bindingtype>
+  <boundentitylogicalname>systemuser</boundentitylogicalname>
+  <description default="Adds a user to the auto created access team for the specified record.">
+    <label description="Adds a user to the auto created access team for the specified record." languagecode="1033" />
+  </description>
+  <displayname default="Add User To Record Team">
+    <label description="Add User To Record Team" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isfunction>0</isfunction>
+  <name>AddUserToRecordTeam</name>
+  <plugintypeid>
+    <plugintypeid>904579e9-ac4e-46a1-8da9-950f05e5f883</plugintypeid>
+  </plugintypeid>
+</customapi>

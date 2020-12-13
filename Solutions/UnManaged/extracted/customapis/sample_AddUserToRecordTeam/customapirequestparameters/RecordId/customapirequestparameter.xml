@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="RecordId">
+  <description default="The id of the record to create the access team for">
+    <label description="The id of the record to create the access team for" languagecode="1033" />
+  </description>
+  <displayname default="Record Id">
+    <label description="Record Id" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>AddUserToRecordTeam.RecordId</name>
+  <type>12</type>
+</customapirequestparameter>

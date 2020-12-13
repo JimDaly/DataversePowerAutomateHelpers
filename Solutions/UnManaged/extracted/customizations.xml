@@ -1,0 +1,33 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows></Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <SolutionPluginAssemblies>
+    <PluginAssembly FullName="DataversePowerAutomateHelpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=47245e9890212fb6" PluginAssemblyId="d017e5ce-d2f4-46cc-8dd5-b5a85ef0b911" CustomizationLevel="1">
+      <IsolationMode>2</IsolationMode>
+      <SourceType>0</SourceType>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <FileName>/PluginAssemblies/DataversePowerAutomateHelpers-D017E5CE-D2F4-46CC-8DD5-B5A85EF0B911/DataversePowerAutomateHelpers.dll</FileName>
+      <PluginTypes>
+        <PluginType AssemblyQualifiedName="DataversePowerAutomateHelpers.AddToQueue, DataversePowerAutomateHelpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=47245e9890212fb6" PluginTypeId="bacef2ba-8aca-481d-a546-092f2b034104" Name="DataversePowerAutomateHelpers.AddToQueue">
+          <FriendlyName>140983c0-4d6e-43b8-93ae-a3a69fc96ce3</FriendlyName>
+        </PluginType>
+        <PluginType AssemblyQualifiedName="DataversePowerAutomateHelpers.AddUserToRecordTeam, DataversePowerAutomateHelpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=47245e9890212fb6" PluginTypeId="904579e9-ac4e-46a1-8da9-950f05e5f883" Name="DataversePowerAutomateHelpers.AddUserToRecordTeam">
+          <FriendlyName>3b53ce5e-42b4-4c6e-b89c-3e85bba6b26a</FriendlyName>
+        </PluginType>
+      </PluginTypes>
+    </PluginAssembly>
+  </SolutionPluginAssemblies>
+  <EntityDataProviders />
+  <Languages>
+    <Language>1033</Language>
+    <Language>1041</Language>
+  </Languages>
+</ImportExportXml>

@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="DestinationQueueName">
+  <description default="The name of the queue to add the item to">
+    <label description="The name of the queue to add the item to" languagecode="1033" />
+  </description>
+  <displayname default="Destination Queue Name">
+    <label description="Destination Queue Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>AddToQueue.DestinationQueueName</name>
+  <type>10</type>
+</customapirequestparameter>

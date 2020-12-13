@@ -9,112 +9,100 @@ using System.ServiceModel;
 
 namespace DataversePowerAutomateHelpers
 {
+    /// <summary>
+    /// Provides logic implementation for the sample_AddUserToRecordTeam Custom API
+    /// </summary>
     public class AddUserToRecordTeam : IPlugin
     {
 
         /*
-        INPUT:
-        Entity Target Required Required  the ID of system user (user) to add to the auto created access team. Required.
-        String RecordEntityLogicalName Required  Gets or sets the record for which the access team is auto created. Required.
-        Guid RecordId Required  Gets or sets the record for which the access team is auto created. Required.
-        String TeamTemplateName Required  The name of team template which is used to create the access team. Required.
-         -- Team template is bound to a specific entity by ETC
+        Input Parameters:
+        | EntityReference | Target                  | Required | The ID of system user (user) to add to the auto created access team. |
+        | String          | RecordEntityLogicalName | Required | Sets the record for which the access team is auto created.           |
+        | Guid            | RecordId                | Required | Sets the record for which the access team is auto created.           |
+        | String          | TeamTemplateName        | Required | The name of team template which is used to create the access team.   |
 
-        OUTPUT:
-        Guid AccessTeamId 
+                    Team template is bound to a specific entity by integer entity type code value
+
+        Output Parameters:
+        | Guid | AccessTeamId | The ID of the auto created access team. |
+
         */
 
 
         public void Execute(IServiceProvider serviceProvider)
         {
-            EntityReference target = null;
-            string recordEntityLogicalName = null;
-            Guid recordId = Guid.Empty;
-            string teamTemplateName = null;
-            Guid teamTemplateId = Guid.Empty;
-
-
             // Obtain the tracing service
-            ITracingService tracingService =
-            (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+            var tracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
 
             // Obtain the execution context from the service provider.  
-            IPluginExecutionContext context = (IPluginExecutionContext)
-                serviceProvider.GetService(typeof(IPluginExecutionContext));
+            var context = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
 
-            // Obtain the organization service reference which you will need for  
-            // web service calls.  
-            IOrganizationServiceFactory serviceFactory =
-                (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+            // Obtain the organization service reference which you will need for web service calls.  
+            var serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
             IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
             //Assign variables from context
-            if (context.InputParameters.Contains("Target"))
-            {
-                target = (EntityReference)context.InputParameters["Target"];
-            }
-
-            if (context.InputParameters.Contains("RecordEntityLogicalName"))
-            {
-                recordEntityLogicalName = (string)context.InputParameters["RecordEntityLogicalName"];
-            }
-
-            if (context.InputParameters.Contains("RecordId"))
-            {
-                recordId = (Guid)context.InputParameters["RecordId"];
-            }
-
-            if (context.InputParameters.Contains("TeamTemplateName"))
-            {
-                teamTemplateName = (string)context.InputParameters["TeamTemplateName"];
-            }
+            var target = (EntityReference)context.InputParameters["Target"];
+            var recordEntityLogicalName = (string)context.InputParameters["RecordEntityLogicalName"];
+            var recordId = (Guid)context.InputParameters["RecordId"];
+            var teamTemplateName = (string)context.InputParameters["TeamTemplateName"];
 
             try
             {
-                //Get the team template Id & verify it is of the right type
 
-                //Get the metadata for the record
-                var retrieveEntityRequest = new RetrieveEntityRequest
-                {
-                    EntityFilters = EntityFilters.Entity,
-                    LogicalName = recordEntityLogicalName
-                };
-
-                EntityMetadata entityMetadata = ((RetrieveEntityResponse)service.Execute(retrieveEntityRequest)).EntityMetadata;
+                //Get the Object Type Code for the record
+                var entityMetadata = Utility.GetEntityProperties(service, recordEntityLogicalName, "ObjectTypeCode");
+                tracingService.Trace($"Object Type Code: {entityMetadata.ObjectTypeCode}");
 
                 //Get the Id teamtemplate that matches the type of record
                 var query = new QueryExpression("teamtemplate")
                 {
-                    ColumnSet = new ColumnSet("teamtemplateid")
+                    ColumnSet = new ColumnSet("teamtemplateid"),
+                    Criteria = new FilterExpression(LogicalOperator.And)
+                    {
+                        Conditions =
+                        {
+                            { new ConditionExpression("teamtemplatename", ConditionOperator.Equal, teamTemplateName)},
+                            { new ConditionExpression("objecttypecode", ConditionOperator.Equal, entityMetadata.ObjectTypeCode)}
+                        }
+                    },
+                    TopCount = 1
                 };
-                query.Criteria.AddCondition(new ConditionExpression("teamtemplatename", ConditionOperator.Equal, teamTemplateName));
-                query.Criteria.AddCondition(new ConditionExpression("objecttypecode", ConditionOperator.Equal, entityMetadata.ObjectTypeCode));
-                query.TopCount = 1;
+
                 var results = service.RetrieveMultiple(query).Entities;
+                tracingService.Trace($"Number of team templates records returned: {results.Count}");
                 if (results.Count < 1)
                 {
-                    throw new InvalidPluginExecutionException($"No Team Template record found with the name '{teamTemplateName}' for the {recordEntityLogicalName} entity.");
+                    throw new InvalidPluginExecutionException($"No Team Template record found with the name " +
+                        $"'{teamTemplateName}' for the {recordEntityLogicalName} entity.");
                 }
-                teamTemplateId = (Guid)results.FirstOrDefault()["teamtemplateid"];
 
+                //Instantiate the request
                 var request = new AddUserToRecordTeamRequest
                 {
                     Record = new EntityReference(recordEntityLogicalName, recordId),
                     SystemUserId = target.Id,
-                    TeamTemplateId = teamTemplateId
+                    TeamTemplateId = (Guid)results.FirstOrDefault()["teamtemplateid"]
                 };
 
-                context.OutputParameters["AccessTeamId"] = ((AddUserToRecordTeamResponse)service.Execute(request)).AccessTeamId;
+                //Send the request
+                var response = ((AddUserToRecordTeamResponse)service.Execute(request));
+                tracingService.Trace("AddUserToRecordTeamRequest sent.");
+
+                //Set the output parameter
+                context.OutputParameters["AccessTeamId"] = response.AccessTeamId;
+                tracingService.Trace($"AccessTeamId value returned: {response.AccessTeamId}");
 
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
-                throw new InvalidPluginExecutionException($"An error occurred in AddUserToRecordTeam: {ex.Message}", ex);
+                throw new InvalidPluginExecutionException($"An error occurred in sample_AddUserToRecordTeam: {ex.Message}", ex);
             }
 
             catch (Exception ex)
             {
-                tracingService.Trace("AddUserToRecordTeam: {0}", ex.ToString());
+                tracingService.Trace("sample_AddUserToRecordTeam: {0}", ex.ToString());
                 throw;
             }
 

@@ -1,0 +1,11 @@
+<customapiresponseproperty uniquename="QueueItemId">
+  <description default="The Id of the QueueItem created">
+    <label description="The Id of the QueueItem created" languagecode="1033" />
+  </description>
+  <displayname default="Queue Item Id">
+    <label description="Queue Item Id" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <name>AddToQueue.QueueItemId</name>
+  <type>12</type>
+</customapiresponseproperty>
