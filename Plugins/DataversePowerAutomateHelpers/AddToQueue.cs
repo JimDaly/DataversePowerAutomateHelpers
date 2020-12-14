@@ -12,10 +12,10 @@ namespace DataversePowerAutomateHelpers
     {
         /*
         Input Parameters:
-        | String | SourceQueueName         | Optional |
-        | String | TargetEntityLogicalName | Required |
-        | Guid   | TargetId                | Required |
-        | String | DestinationQueueName    | Required |
+        | String | SourceQueueName         | Optional | The name of the queue that the item should be moved from.                    |
+        | String | TargetEntityLogicalName | Required | The logical name of the entity that represents the item to add to the queue. |
+        | Guid   | TargetId                | Required | The Id of the item to add to the queue.                                      |
+        | String | DestinationQueueName    | Required | The name of the queue to add the item to.                                    |
 
         Output Parameters:
         | Guid | QueueItemId |

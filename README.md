@@ -12,6 +12,7 @@ Below is a list of the available APIs:
 
 - [sample_AddToQueue](#sample_addtoqueue)
 - [sample_AddUserToRecordTeam](#sample_AddUserToRecordTeam)
+- [sample_RetrieveOptions](#sample_RetrieveOptions)
 
 If there are other Actions you want to use but are not able to, please open an issue for this GitHub repo.
 
@@ -67,3 +68,90 @@ There are a lot of unneeded fields about the team template, when all that is nee
 ### After
 
 ![sample_AddUserToRecordTeam](media/sample_AddUserToRecordTeam.png)
+
+## sample_RetrieveOptions
+
+Unfortunately for the moment, this Custom API serves as a repro for a bug in the Common Data Service (Current Environment) connector. When that bug is fixed, this Custom API should work in Power Automate as expected.
+
+This Custom API addresses the need that many people have expressed to be able to retrieve the valid options for a given entity attribute. The Web API doesn't expose the equivalent to the [RetrieveOptionSet message](https://docs.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.messages.retrieveoptionsetrequest?view=dynamics-general-ce-9) found in the SDK. But even this message is limited in capability because it only returns information about Global optionsets. There are many 'local' optionsets which are not defined globally.
+
+Retrieving information about local optionsets in the Web API is made more complicated because the `OptionSet` property isn't part of the base `AttributeMetadata` class. It is only found in specific classes derived from `AttributeMetadata`. This requires that you know the sub-type before you send your request and cast the attribute in the URL, and there are five different types of attributes with options.
+
+For example, if you want to get the options for an ordinary [PicklistAttributeMetadata](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/web-api/picklistattributemetadata) attribute, you need to compose a URL like this:
+
+`GET [Organization URI]/api/data/v9.0/EntityDefinitions(LogicalName='account')/Attributes(LogicalName='accountcategorycode')/Microsoft.Dynamics.CRM.PicklistAttributeMetadata/OptionSet?$select=Options`
+
+However, the following classes also support OptionSets:
+
+- [BooleanAttributeMetadata](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/web-api/booleanattributemetadata)
+- [MultiSelectPicklistAttributeMetadata](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/web-api/multiselectpicklistattributemetadata)
+- [StateAttributeMetadata](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/web-api/stateattributemetadata)
+- [StatusAttributeMetadata](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/web-api/statusattributemetadata)
+
+More information [Query metadata using the Web API > Retrieving attributes](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/webapi/query-metadata-web-api?view=dynamics-general-ce-9#retrieving-attributes)
+
+What a Power Automate user expects is a simple way to retrieve the valid options without a lot of complexity. This Custom API provides this by requiring just two string values:
+
+|Name|Type|Description|Is Required
+|--|--|--|--|
+|EntityLogicalName|String|The LogicalName of the entity that contains the attribute.|Yes|
+|LogicalName|String|The LogicalName of the attribute that contains the options. |Yes|
+
+![RetrieveOptions](media/sample_RetrieveOptions.png)
+
+Unfortunately, if you try to use the `sample_RetrieveOptions` action at the time this was written, you will get an error like the following: 
+
+![RetrieveOptionsError](media/sample_RetrieveOptionsError.png)
+
+The error suggests the root of the problem:
+
+`The API 'commondataserviceforapps' returned an invalid response for workflow operation 'Perform_an_unbound_action' of type 'OpenApiConnection'. Error details: 'The API operation 'PerformUnboundAction' requires the property 'body' to be of type 'Array' but is of type 'Object'.'`
+
+This Custom API uses an `EntityCollection` return type. The Web API definition for the action looks like this:
+
+```xml
+<Action Name="sample_RetrieveOptions">
+    <Parameter Name="EntityLogicalName" Type="Edm.String" Nullable="false" Unicode="false" />
+    <Parameter Name="LogicalName" Type="Edm.String" Nullable="false" Unicode="false" />
+    <ReturnType Type="Collection(mscrm.crmbaseentity)" Nullable="false" />
+</Action>
+```
+
+If you call the Action from PostMan, it works as expected:
+
+**Request**
+
+```http
+GET {{webapiurl}}sample_RetrieveOptions
+
+{
+    "EntityLogicalName" : "account",
+    "LogicalName":"accountcategorycode"
+}
+```
+
+
+**Response Body**
+
+```json
+{
+    "@odata.context": "{{webapiurl}}$metadata#expando",
+    "value": [
+        {
+            "@odata.type": "#Microsoft.Dynamics.CRM.expando",
+            "value": 1,
+            "label": "Preferred Customer"
+        },
+        {
+            "@odata.type": "#Microsoft.Dynamics.CRM.expando",
+            "value": 2,
+            "label": "Standard"
+        }
+    ]
+}
+```
+
+An `EntityCollection` is an object rather than an Array. It returns an object with a `value` property just like an entity collection returned with this request: `GET {{webapiurl}}accounts`.
+
+Hopefully this bug will be fixed soon and we will be able to use Custom API actions which return EntityCollection in Power Automate.
+
