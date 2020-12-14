@@ -11,7 +11,7 @@ namespace DataversePowerAutomateHelpers
     {
         /*
         Input Parameters:
-        | String | EntityLogicalName    | Required | The LogicalName of the entity (or table) that contains the attribute (or column). |
+        | String | EntityLogicalName    | Required | The LogicalName of the entity that contains the attribute. |
         | String | LogicalName | Required | The LogicalName of the attribute (or column) that contains the options.           |
 
 
