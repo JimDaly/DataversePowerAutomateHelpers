@@ -22,6 +22,9 @@
         <PluginType AssemblyQualifiedName="DataversePowerAutomateHelpers.AddUserToRecordTeam, DataversePowerAutomateHelpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=47245e9890212fb6" PluginTypeId="904579e9-ac4e-46a1-8da9-950f05e5f883" Name="DataversePowerAutomateHelpers.AddUserToRecordTeam">
           <FriendlyName>3b53ce5e-42b4-4c6e-b89c-3e85bba6b26a</FriendlyName>
         </PluginType>
+        <PluginType AssemblyQualifiedName="DataversePowerAutomateHelpers.RetrieveOptions, DataversePowerAutomateHelpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=47245e9890212fb6" PluginTypeId="7fbc50a6-6be4-4ae0-ba5d-e907b8c85a23" Name="DataversePowerAutomateHelpers.RetrieveOptions">
+          <FriendlyName>ac740648-541a-4237-8392-b24338bfb794</FriendlyName>
+        </PluginType>
       </PluginTypes>
     </PluginAssembly>
   </SolutionPluginAssemblies>

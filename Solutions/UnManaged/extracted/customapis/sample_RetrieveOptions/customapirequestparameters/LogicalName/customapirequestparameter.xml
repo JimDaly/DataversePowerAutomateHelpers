@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="LogicalName">
+  <description default="The logical name of the attribute that contains the options you want.">
+    <label description="The logical name of the attribute that contains the options you want." languagecode="1033" />
+  </description>
+  <displayname default="Logical Name">
+    <label description="Logical Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>RetrieveOptions.LogicalName</name>
+  <type>10</type>
+</customapirequestparameter>

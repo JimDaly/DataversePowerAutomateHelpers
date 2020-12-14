@@ -1,0 +1,12 @@
+<customapirequestparameter uniquename="EntityLogicalName">
+  <description default="The logical name of the entity that contains the attribute with the options you want.">
+    <label description="The logical name of the entity that contains the attribute with the options you want." languagecode="1033" />
+  </description>
+  <displayname default="Entity Logical Name">
+    <label description="Entity Logical Name" languagecode="1033" />
+  </displayname>
+  <iscustomizable>1</iscustomizable>
+  <isoptional>0</isoptional>
+  <name>RetrieveOptions.EntityLogicalName</name>
+  <type>10</type>
+</customapirequestparameter>
