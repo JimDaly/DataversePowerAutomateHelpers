@@ -122,7 +122,7 @@ If you call the Action from PostMan, it works as expected:
 **Request**
 
 ```http
-GET {{webapiurl}}sample_RetrieveOptions
+POST {{webapiurl}}sample_RetrieveOptions
 
 {
     "EntityLogicalName" : "account",
