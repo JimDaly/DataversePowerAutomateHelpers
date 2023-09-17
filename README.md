@@ -144,7 +144,7 @@ POST {{webapiurl}}sample_RetrieveOptions
 This JSON data is what is returned by Power Automate:
 
 
-
+![RetrieveOptionsResults](media/sample_RetrieveOptionsResults.png)
 
 
 
